@@ -22,7 +22,7 @@ module "ecs" {
           image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/jaz-service1-ecr:latest"
           port_mappings = [
             {
-              containerPort = 8080
+              containerPort = 5001
               protocol      = "tcp"
             }
           ]
@@ -55,7 +55,7 @@ module "ecs" {
           image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/jaz-service2-ecr:latest"
           port_mappings = [
             {
-              containerPort = 8081
+              containerPort = 5003
               protocol      = "tcp"
             }
           ]
@@ -88,7 +88,7 @@ module "ecs" {
           image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/jaz-service3-ecr:latest"
           port_mappings = [
             {
-              containerPort = 8082
+              containerPort = 5002
               protocol      = "tcp"
             }
           ]

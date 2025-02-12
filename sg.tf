@@ -8,8 +8,8 @@ module "service1_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 8080
-      to_port     = 8080
+      from_port   = 5001
+      to_port     = 5001
       protocol    = "tcp"
       description = "Service name"
       cidr_blocks = "0.0.0.0/0"
@@ -28,8 +28,8 @@ module "service2_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 8081
-      to_port     = 8081
+      from_port   = 5003
+      to_port     = 5003
       protocol    = "tcp"
       description = "Service name"
       cidr_blocks = "0.0.0.0/0"
@@ -48,8 +48,8 @@ module "service3_sg" {
 
   ingress_with_cidr_blocks = [
     {
-      from_port   = 8082
-      to_port     = 8082
+      from_port   = 5002
+      to_port     = 5002
       protocol    = "tcp"
       description = "Service name"
       cidr_blocks = "0.0.0.0/0"
