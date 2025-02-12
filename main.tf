@@ -26,6 +26,16 @@ module "ecs" {
               protocol      = "tcp"
             }
           ]
+          environment = [
+            {
+              name  = "AWS_REGION"
+              value = "ap-southeast-1"
+            },
+            {
+              name  = "TABLE_NAME"
+              value = aws_dynamodb_table.service1_ddb.id
+            }
+          ]
         }
       }
       assign_public_ip                   = true
@@ -47,6 +57,16 @@ module "ecs" {
             {
               containerPort = 8081
               protocol      = "tcp"
+            }
+          ]
+          environment = [
+            {
+              name  = "AWS_REGION"
+              value = "ap-southeast-1"
+            },
+            {
+              name  = "BUCKET_NAME"
+              value = aws_s3_bucket.service2_bucket.id
             }
           ]
         }
@@ -72,6 +92,16 @@ module "ecs" {
               protocol      = "tcp"
             }
           ]
+          environment = [
+            {
+              name  = "AWS_REGION"
+              value = "ap-southeast-1"
+            },
+            {
+              name  = "QUEUE_URL"
+              value = aws_sqs_queue.service3_queue.url
+            }
+          ]
         }
       }
       assign_public_ip                   = true
@@ -81,5 +111,24 @@ module "ecs" {
       create_tasks_iam_role              = false
       tasks_iam_role_arn                 = module.service3_role.iam_role_arn
     }
+  }
+}
+
+resource "aws_s3_bucket" "service2_bucket" {
+  bucket = "jaz-service2-bkt"
+}
+
+resource "aws_sqs_queue" "service3_queue" {
+  name = "jaz-service3-queue"
+}
+
+resource "aws_dynamodb_table" "service1_ddb" {
+  name         = "jaz-service1-ddb"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "pk"
+
+  attribute {
+    name = "pk"
+    type = "S"
   }
 }
