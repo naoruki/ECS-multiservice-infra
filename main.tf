@@ -30,10 +30,6 @@ module "ecs" {
             {
               name  = "AWS_REGION"
               value = "ap-southeast-1"
-            },
-            {
-              name  = "TABLE_NAME"
-              value = aws_dynamodb_table.service1_ddb.id
             }
           ]
         }
@@ -66,7 +62,7 @@ module "ecs" {
             },
             {
               name  = "BUCKET_NAME"
-              value = aws_s3_bucket.service2_bucket.id
+              value = "jaz-service2-bkt"
             }
           ]
         }
@@ -99,8 +95,7 @@ module "ecs" {
             },
             {
               name  = "QUEUE_URL"
-              value = aws_sqs_queue.service3_queue.url
-            }
+              value = "jaz-service3-queue"
           ]
         }
       }
