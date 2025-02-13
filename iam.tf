@@ -6,6 +6,8 @@ module "service1_role" {
     "ecs-tasks.amazonaws.com"
   ]
 
+  role_requires_mfa = false
+
   create_role = true
   role_name   = "jaz-service1-ecs-task-role"
   custom_role_policy_arns = [
@@ -21,6 +23,8 @@ module "service2_role" {
     "ecs-tasks.amazonaws.com"
   ]
 
+  role_requires_mfa = false
+
   create_role = true
   role_name   = "jaz-service2-ecs-task-role"
   custom_role_policy_arns = [
@@ -35,7 +39,9 @@ module "service3_role" {
   trusted_role_services = [
     "ecs-tasks.amazonaws.com"
   ]
-
+  
+  role_requires_mfa = false
+ 
   create_role = true
   role_name   = "jaz-service3-ecs-task-role"
   custom_role_policy_arns = [
