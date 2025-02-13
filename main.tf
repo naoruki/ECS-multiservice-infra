@@ -96,6 +96,7 @@ module "ecs" {
             {
               name  = "QUEUE_URL"
               value = "jaz-service3-queue"
+             }
           ]
         }
       }
