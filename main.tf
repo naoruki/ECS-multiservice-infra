@@ -1,16 +1,16 @@
 resource "aws_s3_bucket" "s3_service_bucket" {
-  bucket = "jaz-s3-service-bkt"
+  bucket = "cornelia-s3-service-bkt"
 }
 
 resource "aws_sqs_queue" "sqs_service_queue" {
-  name = "jaz-sqs-service-queue"
+  name = "cornelia-sqs-service-queue"
 }
 
 module "ecs" {
   source  = "terraform-aws-modules/ecs/aws"
   version = "~> 5.9.0"
 
-  cluster_name = "jaz-multiservice-ecs"
+  cluster_name = "cornelia-multiservice-ecs"
 
   fargate_capacity_providers = {
     FARGATE = {
@@ -21,13 +21,13 @@ module "ecs" {
   }
 
   services = {
-    jaz-s3-service = {
+    cornelia-s3-service = {
       cpu    = 512
       memory = 1024
       container_definitions = {
-        jaz-s3-service-container = {
+        cornelia-s3-service-container = {
           essential = true
-          image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/jaz-s3-service-ecr:latest"
+          image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/cornelia-s3-service-ecr:latest"
           port_mappings = [
             {
               containerPort = 5001
@@ -41,7 +41,7 @@ module "ecs" {
             },
             {
               name  = "BUCKET_NAME"
-              value = "jaz-s3-service-bkt"
+              value = "cornelia-s3-service-bkt"
             }
           ]
         }
@@ -54,13 +54,13 @@ module "ecs" {
       tasks_iam_role_arn                 = module.s3_service_task_role.iam_role_arn
     }
 
-    jaz-sqs-service = {
+    cornelia-sqs-service = {
       cpu    = 512
       memory = 1024
       container_definitions = {
-        jaz-sqs-service-container = {
+        cornelia-sqs-service-container = {
           essential = true
-          image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/jaz-sqs-service-ecr:latest"
+          image     = "${data.aws_caller_identity.current.account_id}.dkr.ecr.${data.aws_region.current.name}.amazonaws.com/cornelia-sqs-service-ecr:latest"
           port_mappings = [
             {
               containerPort = 5002
@@ -74,7 +74,7 @@ module "ecs" {
             },
             {
               name  = "QUEUE_URL"
-              value = "jaz-sqs-service-queue"
+              value = "cornelia-sqs-service-queue"
             }
           ]
         }

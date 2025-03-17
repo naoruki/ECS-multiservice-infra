@@ -2,7 +2,7 @@ module "s3_service_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.1.0"
 
-  name        = "jaz-s3-service-ecs-sg"
+  name        = "cornelia-s3-service-ecs-sg"
   description = "Security group for s3 service"
   vpc_id      = data.aws_vpc.default.id
 
@@ -22,7 +22,7 @@ module "sqs_service_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "~> 5.1.0"
 
-  name        = "jaz-sqs-service-ecs-sg"
+  name        = "cornelia-sqs-service-ecs-sg"
   description = "Security group for sqs service"
   vpc_id      = data.aws_vpc.default.id
 

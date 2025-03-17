@@ -9,7 +9,7 @@ module "s3_service_task_role" {
   role_requires_mfa = false
 
   create_role = true
-  role_name   = "jaz-s3-service-task-role"
+  role_name   = "cornelia-s3-service-task-role"
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonS3FullAccess" #Only for testing purposes
   ]
@@ -26,7 +26,7 @@ module "sqs_service_task_role" {
   role_requires_mfa = false
 
   create_role = true
-  role_name   = "jaz-sqs-service-task-role"
+  role_name   = "cornelia-sqs-service-task-role"
   custom_role_policy_arns = [
     "arn:aws:iam::aws:policy/AmazonSQSFullAccess" #Only for testing purposes
   ]
